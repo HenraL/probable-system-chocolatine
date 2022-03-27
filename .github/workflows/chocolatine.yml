@@ -1,5 +1,7 @@
 name: chocolatine
-on: [push]
+on: [push, pull]
+on: "ga-ignore-"
+jobs: exit
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
