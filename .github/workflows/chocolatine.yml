@@ -21,9 +21,9 @@ jobs:
           run: echo 'The branch name is' $BRANCH_NAME
 
         #check if we are in a branch
-        - name: check the branch
-          if: $BRANCH_NAME == "main"
-          run: echo "The branch name is $BRANCH_NAME (and is main)"
+        # - name: check the branch
+        #   if: $BRANCH_NAME == "main"
+        #   run: echo "The branch name is $BRANCH_NAME (and is main)"
 
 
 # on: "ga-ignore-"
