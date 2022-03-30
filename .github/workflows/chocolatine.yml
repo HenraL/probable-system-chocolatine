@@ -1,29 +1,41 @@
 name: chocolatine
 on: [push, pull_request]
 jobs:
-  which_branch:
-      runs-on: ubuntu-latest
-      steps:
+  - name: Extract branch name
+  shell: bash
+  run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+  id: extract_branch
+  if: $name != ga-ignore-
+      run: echo "The branch name is $name"
+  else:
+      run: echo "I know that the branch name is ga-ignore- but I could be wrong ($name)"
+  # which_branch:
+  #     runs-on: ubuntu-latest
+  #     steps:
         # extract branch name
-        - name: Extract branch name
-          if: github.event_name != 'pull_request'
-          shell: bash
-          run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
-          id: extract_branch
+        # - name: Extract branch name
+        #   if: github.event_name != 'pull_request'
+        #   shell: bash
+        #   run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
+        #   id: extract_branch
 
         # extract branch name on pull request
-        - name: Print branch name
-          if: github.event_name == 'pull_request'
-          run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
+        # - name: Print branch name
+        #   if: github.event_name == 'pull_request'
+        #   run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
 
-        # print branch name
-        - name: Get branch name
-          run: echo 'The branch name is' $BRANCH_NAME
+        # # print branch name
+        # - name: Get branch name
+        #   run: echo 'The branch name is' $BRANCH_NAME
 
         #check if we are in a branch
         # - name: check the branch
         #   if: $BRANCH_NAME == "main"
         #   run: echo "The branch name is $BRANCH_NAME (and is main)"
+        # find all the # files
+        # name: clean repository
+        # run: find . -type f \( -name "*~" -o -name "#*#" -o -name "*.o" -o -name "*.a" -o -name "*-;" -o -name "*.so" -o -name "*.gcno" -o -name "*.gcda" -o -name "*.gcov" -o -name "tmp"\) -delete
+
 
 
 # on: "ga-ignore-"
