@@ -24,3 +24,6 @@ jobs:
         run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
       - name: Only run this if file containing pain_au_chocolat exists
         run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
+      - name: Check if \# is in file
+        if: grep -q "#" "#something"
+        run: "echo '#' is in the string"
