@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: setup python
         uses: actions/setup-python@v2
-      - name: set the python-version to use
+        # - name: set the python-version to use
         with:
           python-version: 3.8 #install the python needed
       - name: execute a python script
