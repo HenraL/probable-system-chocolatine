@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Where am i?
-        run: "echo $pwd"
+        run: "echo $PWD"
       - name: What is in my directory?
         run: "ls | cat -e"
       - name: Only run this if file README exists
