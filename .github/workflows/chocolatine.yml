@@ -4,6 +4,10 @@ jobs:
   check-for-unwanted-files:
     runs-on: ubuntu-latest
     steps:
+      - name: Where am i?
+        run: "echo $pwd"
+      - name: What is in my directory?
+        run: "ls"
       - name: Only run this if file README exists
         run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
       - name: Only run this if file containing pain_au_chocolat exists
