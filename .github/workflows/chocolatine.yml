@@ -23,10 +23,33 @@ jobs:
         run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
       - name: Only run this if file containing pain_au_chocolat exists
         run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
-      - name: Check if \# is in file
-        run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
-      # - name: "Unwanted file detected: Dockerfile~#L1"
-      #   run: "echo 'Dockerfile~';exit 1"
-      - name: "Good files found in folders: .gitignore#L1"
-        run: "echo '.gitignore';exit 0"
+      # - name: Check if \# is in file
+      - run: 'for FILE in *; do it grep -q "*~" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*-;" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do if grep -q "#*" $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
+      - run: 'for FILE in *; do it grep -q "#*#" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*#" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.o" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.a" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.exe" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.so" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.gcno" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.gcda" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*.gcov" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "tmp" $FILE; then echo "Unwanted folder detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*pain_au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+
+      - run: 'for FILE in *; do it grep -q "*pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*pain" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+
+      - run: 'for FILE in *; do it grep -q "*au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+
+      - run: 'for FILE in *; do it grep -q "*chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "*chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
+      - run: 'for FILE in *; do it grep -q "chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";return 1; fi; done;'
         # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
