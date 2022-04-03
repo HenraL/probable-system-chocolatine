@@ -25,4 +25,5 @@ jobs:
         run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
       - name: Check if \# is in file
         run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
+      - name: "Unwanted file detected: Dockerfile~#L1"
         # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
