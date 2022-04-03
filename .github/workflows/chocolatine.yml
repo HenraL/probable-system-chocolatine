@@ -5,10 +5,18 @@ jobs:
   shell: bash
   run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
   id: extract_branch
-  if: $name != ga-ignore-
-      run: echo "The branch name is $name"
-  else:
-      run: echo "I know that the branch name is ga-ignore- but I could be wrong ($name)"
+  steps:
+  - name: Only run this if file README exists
+    run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
+  - name: Only run this if file containing pain_au_chocolat exists
+    run: '(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists'
+
+
+
+  # if: $name != ga-ignore-
+  #     run: echo "The branch name is $name"
+  # else:
+  #     run: echo "I know that the branch name is ga-ignore- but I could be wrong ($name)"
   # which_branch:
   #     runs-on: ubuntu-latest
   #     steps:
