@@ -1,7 +1,7 @@
 name: chocolatine
 on: [push, pull_request]
 jobs:
-  check-bats-version:
+  check-for-unwanted-files:
     runs-on: ubuntu-latest
     steps:
       - name: Only run this if file README exists
