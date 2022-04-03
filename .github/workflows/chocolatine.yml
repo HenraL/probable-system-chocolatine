@@ -27,4 +27,6 @@ jobs:
         run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
       - name: "Unwanted file detected: Dockerfile~#L1"
         run: "echo 'Dockerfile~';exit 1"
+      - name: "Good files found in folders: .gitignore#L1"
+        run: "echo '.gitignore';exit 0"
         # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
