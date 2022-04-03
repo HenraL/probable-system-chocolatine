@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Where am i?
         run: "echo $PWD"
+      - name: Display help.
+        run: "help"
       - name: What is in my directory?
         run: ls | cat -e
       - name: Only run this if file README exists
