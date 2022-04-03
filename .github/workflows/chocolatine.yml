@@ -4,66 +4,7 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-    - name: Only run this if file README exists
-    run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
-    - name: Only run this if file containing pain_au_chocolat exists
-    run: '(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists'
-
-
-
-      # - uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3
-        # with:
-          # node-version: '14'
-      # - run: npm install -g bats
-      # - run: bats -v
-  # if: $name != ga-ignore-
-  #     run: echo "The branch name is $name"
-  # else:
-  #     run: echo "I know that the branch name is ga-ignore- but I could be wrong ($name)"
-  # which_branch:
-  #     runs-on: ubuntu-latest
-  #     steps:
-        # extract branch name
-        # - name: Extract branch name
-        #   if: github.event_name != 'pull_request'
-        #   shell: bash
-        #   run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
-        #   id: extract_branch
-
-        # extract branch name on pull request
-        # - name: Print branch name
-        #   if: github.event_name == 'pull_request'
-        #   run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
-
-        # # print branch name
-        # - name: Get branch name
-        #   run: echo 'The branch name is' $BRANCH_NAME
-
-        #check if we are in a branch
-        # - name: check the branch
-        #   if: $BRANCH_NAME == "main"
-        #   run: echo "The branch name is $BRANCH_NAME (and is main)"
-        # find all the # files
-        # name: clean repository
-        # run: find . -type f \( -name "*~" -o -name "#*#" -o -name "*.o" -o -name "*.a" -o -name "*-;" -o -name "*.so" -o -name "*.gcno" -o -name "*.gcda" -o -name "*.gcov" -o -name "tmp"\) -delete
-
-
-
-# on: "ga-ignore-"
-# jobs: exit
-# jobs:
-#   Explore-GitHub-Actions:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-#       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-#       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-#       - name: Check out repository code
-#         uses: actions/checkout@v2
-#       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-#       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-#       - name: List files in the repository
-#         run: |
-#           ls ${{ github.workspace }}
-#       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Only run this if file README exists
+        run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
+      - name: Only run this if file containing pain_au_chocolat exists
+        run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
