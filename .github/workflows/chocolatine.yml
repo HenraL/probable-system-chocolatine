@@ -4,6 +4,14 @@ jobs:
   check-for-unwanted-files:
     runs-on: ubuntu-latest
     steps:
+      - name: setup python
+        uses: actions/setup-python@v2
+      - name: set the python-version to use
+        with:
+          python-version: 3.8 #install the python needed
+      - name: execute a python script
+        run: |
+          python list_directory.py
       - name: Where am i?
         run: "echo $PWD"
       - name: Display help.
