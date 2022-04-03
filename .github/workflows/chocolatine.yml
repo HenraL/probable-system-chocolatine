@@ -24,5 +24,5 @@ jobs:
       - name: Only run this if file containing pain_au_chocolat exists
         run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
       - name: Check if \# is in file
-        run: "for FILE in *; do if grep -q '#' $FILE;then  echo 'found # in filename'; fi; done"
+        run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
         # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
