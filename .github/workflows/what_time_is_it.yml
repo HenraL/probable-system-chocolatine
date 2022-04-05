@@ -19,7 +19,7 @@ jobs:
       steps:
         - name: Get current date
           id: dote
-          run: echo "::set-output name=dote::$(date +'%Y-%m-%d')"
+          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
         # - name: getting the time
         #   id: me_time
         #   run: echo "::set-output name=mo_time::$(date +'%Hh%Mm%Ss%Nns')
