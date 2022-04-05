@@ -39,5 +39,5 @@ jobs:
           with:
             who-to-greet: $CURRENT_USERNAME-${{ steps.date.outputs.date }}
           # uses: actions/hello-world-docker-action@master
-          with:
+          # with:
             who-to-greet: $CURRENT_USERNAME-${{ steps.date.outputs.my_time }}
