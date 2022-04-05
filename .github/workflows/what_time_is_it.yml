@@ -26,6 +26,12 @@ jobs:
             RELEASE_NAME: "The_Date_Is: ${{ steps.dote.outputs.date }}"
             CURRENT_TIME: "The_time_is: ${{ steps.me_time.outputs.mo_time }}"
             CURRENT_USERNAME: 'Mona_the_Octocat'
+        - name: output environement variables v1
+          run: |
+            echo "TAG_NAME is '$TAG_NAME'"
+            echo " RELEASE_NAME is '$RELEASE_NAME'"
+            echo " CURRENT_TIME is '$CURRENT_TIME'"
+            echo " CURRENT_USERNAME is '$CURRENT_USERNAME'"
         - name: Put the vars in structure my_env
           id: my_env
           run: |
@@ -34,15 +40,6 @@ jobs:
             echo "::set-output name=current_time::$CURRENT_TIME"
             echo "::set-output name=current_username::$CURRENT_USERNAME"
 
-        - name: output environement variables v1
-          run: |
-            echo "TAG_NAME is '$TAG_NAME'"
-            echo " RELEASE_NAME is '$RELEASE_NAME'"
-            echo " CURRENT_TIME is '$CURRENT_TIME'"
-            echo " CURRENT_USERNAME is '$CURRENT_USERNAME'"
-          # run:
-          # run:
-          # run:
         - name: Test with input
           uses: actions/hello-world-docker-action@master
           with:
