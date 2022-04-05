@@ -14,7 +14,7 @@ jobs:
       env:
         TAG_NAME: "The_date_is:"
         RELEASE_NAME: "The_Date_Is:"
-        # CURRENT_TIME: "The_time_is:"
+        CURRENT_TIME: "The_time_is:"
         CURRENT_USERNAME: 'Mona_the_Octocat'
       steps:
         - name: Get current date
@@ -31,10 +31,10 @@ jobs:
           # CURRENT_TIME: "$CURRENT_TIME ${{steps.me_time.outputs.mo_time}}"
         - name: output environement variables v1
           run: |
-            echo "TAG_NAME is $TAG_NAME"
-            echo " RELEASE_NAME is $RELEASE_NAME"
-            # echo " CURRENT_TIME is $CURRENT_TIME"
-            echo " CURRENT_USERNAME is $CURRENT_USERNAME"
+            echo "TAG_NAME is '$TAG_NAME'"
+            echo " RELEASE_NAME is '$RELEASE_NAME'"
+            echo " CURRENT_TIME is '$CURRENT_TIME'"
+            echo " CURRENT_USERNAME is '$CURRENT_USERNAME'"
           # run:
           # run:
           # run:
