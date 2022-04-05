@@ -12,9 +12,9 @@ jobs:
       name: Example
       runs-on: ubuntu-latest
       env:
-        TAG_NAME: "The_date_is: ${{ steps.date.outputs.date }}"
-        RELEASE_NAME: "The_Date_Is: ${{ steps.date.outputs.date }}"
-        # CURRENT_TIME: "The_time_is: ${{steps.me_time.outputs.mo_time}}"
+        TAG_NAME: "The_date_is:"
+        RELEASE_NAME: "The_Date_Is:"
+        # CURRENT_TIME: "The_time_is:"
         CURRENT_USERNAME: 'Mona_the_Octocat'
       steps:
         - name: Get current date
@@ -26,6 +26,9 @@ jobs:
 
         - name: Test with environment variables
           run: echo $TAG_NAME - $RELEASE_NAME
+          TAG_NAME: "$TAG_NAME ${{ steps.date.outputs.date }}"
+          RELEASE_NAME: "$RELEASE_NAME ${{ steps.date.outputs.date }}"
+          # CURRENT_TIME: "$CURRENT_TIME ${{steps.me_time.outputs.mo_time}}"
         - name: output environement variables v1
           run: |
             echo "TAG_NAME is $TAG_NAME"
