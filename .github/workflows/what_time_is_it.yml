@@ -39,6 +39,12 @@ jobs:
             echo "::set-output name=release_name::$RELEASE_NAME"
             echo "::set-output name=current_time::$CURRENT_TIME"
             echo "::set-output name=current_username::$CURRENT_USERNAME"
+        - name: Ouput structure content
+          run: |
+            echo "steps.my_env.tag_name is '${steps.my_env.tag_name}'"
+            echo "steps.my_env.release_name is '${steps.my_env.release_name}'"
+            echo "steps.my_env.current_time is '${steps.my_env.current_time}'"
+            echo "steps.my_env.current_username is '${steps.my_env.current_username}'"
 
         - name: Test with input
           uses: actions/hello-world-docker-action@master
