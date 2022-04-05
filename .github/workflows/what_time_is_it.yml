@@ -7,7 +7,7 @@
 
 name: What time is it
 on: [push]
-jobs:
+# jobs:
 build:
     name: Example
     runs-on: ubuntu-latest
