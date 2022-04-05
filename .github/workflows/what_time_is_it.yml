@@ -26,10 +26,10 @@ jobs:
             CURRENT_TIME: "The_time_is: ${{steps.me_time.outputs.mo_time}}"
             CURRENT_USERNAME: 'Mona_the_Octocat'
         - name: output environement variables v1
-          run: echo 'steps.env.TAG_NAME =' "${{steps.env.TAG_NAME}}"
-          run: echo 'steps.env.RELEASE_NAME =' "${{steps.env.RELEASE_NAME}}"
-          run: echo 'steps.env.CURRENT_TIME =' "${{steps.env.CURRENT_TIME}}"
-          run: echo 'steps.env.CURRENT_USERNAME =' "${{steps.env.CURRENT_USERNAME}}"
+          run: echo "steps.env.TAG_NAME is ${{steps.env.TAG_NAME}}"
+          run: echo "steps.env.RELEASE_NAME is ${{steps.env.RELEASE_NAME}}"
+          run: echo "steps.env.CURRENT_TIME is ${{steps.env.CURRENT_TIME}}"
+          run: echo "steps.env.CURRENT_USERNAME is ${{steps.env.CURRENT_USERNAME}}"
         - name: output environement variables v2
           run: echo "TAG_NAME is ${{TAG_NAME}}"
           run: echo " RELEASE_NAME is ${{RELEASE_NAME}}"
