@@ -18,7 +18,7 @@ jobs:
         # - name: getting the time
         #   id: me_time
         #   run: echo "::set-output name=mo_time::$(date +'%Hh%Mm%Ss%Nns')
-        - env:
+        env:
           TAG_NAME: "The_date_is: ${{ steps.date.outputs.date }}"
           RELEASE_NAME: "The_Date_Is: ${{ steps.date.outputs.date }}"
           # CURRENT_TIME: "The_time_is: ${{steps.me_time.outputs.mo_time}}"
