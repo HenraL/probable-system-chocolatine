@@ -18,8 +18,8 @@ jobs:
         CURRENT_USERNAME: 'Mona_the_Octocat'
       steps:
         - name: Get current date
-          id: date
-          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+          id: dote
+          run: echo "::set-output name=dote::$(date +'%Y-%m-%d')"
         # - name: getting the time
         #   id: me_time
         #   run: echo "::set-output name=mo_time::$(date +'%Hh%Mm%Ss%Nns')
@@ -41,7 +41,7 @@ jobs:
         - name: Test with input
           uses: actions/hello-world-docker-action@master
           with:
-            who-to-greet: "${CURRENT_USERNAME}-${{ steps.date.outputs.date }}"
+            who-to-greet: "${CURRENT_USERNAME}-${{ steps.dote.outputs.date }}"
         # - name: Test time output
         #   uses: actions/hello-world-docker-action@master
         #   with:
