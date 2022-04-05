@@ -38,6 +38,7 @@ jobs:
           uses: actions/hello-world-docker-action@master
           with:
             who-to-greet: $CURRENT_USERNAME-${{ steps.date.outputs.date }}
-          # uses: actions/hello-world-docker-action@master
-          # with:
+        - name: Test time output
+          uses: actions/hello-world-docker-action@master
+          with:
             who-to-greet: $CURRENT_USERNAME-${{ steps.date.outputs.my_time }}
