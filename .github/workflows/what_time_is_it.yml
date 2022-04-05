@@ -14,10 +14,12 @@ jobs:
       steps:
         - name: Get current date
           id: dote
-          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+          run: |
+            echo "::set-output name=date::$(date +'%Y-%m-%d')"
+            echo "::set-output name=mo_time::$(date +'%H-%M-%S-%N')"
         - name: getting the time
           id: me_time
-          run: echo "::set-output name=mo_time::$(date +'%H-%M-%S-%N')
+          run: echo "::set-output name=mo_time::$(date +'%H-%M-%S-%N')"
 
         - name: Test with environment variables
           run: |
