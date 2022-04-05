@@ -27,17 +27,13 @@ jobs:
             CURRENT_USERNAME: 'Mona_the_Octocat'
         - name: output environement variables v1
           run: echo "TAG_NAME is ${{TAG_NAME}}"
-          run: echo " RELEASE_NAME is ${{RELEASE_NAME}}"
-          run: echo " CURRENT_TIME is ${{CURRENT_TIME}}"
-          run: echo " CURRENT_USERNAME is ${{CURRENT_USERNAME}}"
-        - name: output environement variables v2
-          run: echo "steps.env.TAG_NAME is ${steps.env.TAG_NAME}"
-          run: echo "steps.env.RELEASE_NAME is ${steps.env.RELEASE_NAME}"
-          run: echo "steps.env.CURRENT_TIME is ${steps.env.CURRENT_TIME}"
-          run: echo "steps.env.CURRENT_USERNAME is ${steps.env.CURRENT_USERNAME}"
+          run: echo " RELEASE_NAME is $RELEASE_NAME"
+          run: echo " CURRENT_TIME is $CURRENT_TIME"
+          run: echo " CURRENT_USERNAME is $CURRENT_USERNAME"
         - name: Test with input
           uses: actions/hello-world-docker-action@master
           with:
             who-to-greet: ${{ CURRENT_USERNAME }}-${{ steps.date.outputs.date }}
+          uses: actions/hello-world-docker-action@master
           with:
             who-to-greet: ${{ CURRENT_USERNAME }}-${{ steps.date.outputs.my_time }}
