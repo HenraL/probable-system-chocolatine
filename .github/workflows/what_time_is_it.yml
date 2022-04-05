@@ -34,9 +34,9 @@ jobs:
           #   CURRENT_TIME: "The_time_is: ${{ steps.me_time.outputs.moo_time }}"
           #   CURRENT_USERNAME: 'Mona_the_Octocat'
           run: |
-            echo "::set-output name=tag_name::$('The_date_is: ${{ steps.dote.outputs.date }}')"
-            echo "::set-output name=release_name::$('The_Date_Is: ${{ steps.dote.outputs.date }}')"
-            echo "::set-output name=current_time::$('The_time_is: ${{ steps.me_time.outputs.moo_time }}')"
+            echo "::set-output name=tag_name::'The_date_is: $(steps.dote.outputs.date)'"
+            echo "::set-output name=release_name::'The_Date_Is: $(steps.dote.outputs.date)'"
+            echo "::set-output name=current_time::'The_time_is: $(steps.me_time.outputs.moo_time)'"
             echo "::set-output name=current_username::'Mona_the_Octocat'"
             echo "steps.my_env_env.tag_name is '${{ steps.my_env_env.tag_name }}'"
             echo "steps.my_env_env.release_name is '${{ steps.my_env_env.release_name }}'"
