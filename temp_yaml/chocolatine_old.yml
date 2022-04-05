@@ -1,0 +1,81 @@
+name: chocolatine
+on: [push, pull_request]
+jobs:
+  check_program_compilation:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    env:
+      # MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-thomas.tran.git
+      MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
+      EXECUTABLES: "my_sokoban"
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Build project
+        run: make
+      - name: Clean build
+        run: make clean
+      - name: Check executables
+        run: |
+          filename="$EXECUTABLES"
+          IFS=','
+          read -ra ADDR <<< "$filename"
+          for i in "${ADDR[@]}"
+          do
+          [ ! -f "$i" ] && echo "::error::$i is missing."
+          done
+
+  # check-for-unwanted-files:
+  #   runs-on: ubuntu-latest
+  #   container: epitechcontent/epitest-docker
+  #   steps:
+  #     - name: cloning directory into the machine
+  #       uses: actions/checkout@v2
+  #     # - name: setup python
+  #     #   uses: actions/setup-python@v2
+  #     #   with:
+  #     #     python-version: 3.8 #install the python needed
+  #     # - name: execute a python script
+  #     #   run: |
+  #     #     python list_directory.py
+  #     - name: Where am i?
+  #       run: "echo $PWD"
+  #     - name: Display help.
+  #       run: "help"
+  #     - name: What is in my directory?
+  #       run: ls | cat -e
+  #     - name: Only run this if file README exists
+  #       run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
+  #     - name: Only run this if file containing pain_au_chocolat exists
+  #       run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
+  #     # - name: Check if \# is in file
+  # - run: 'for FILE in *; do if grep -q "*~" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*-;" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "#*" $FILE;then  echo "Unwanted file detected: $FILE#L1";rm -f $FILE; fi; done'
+  #     - run: 'for FILE in *; do if grep -q "#*#" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*#" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.o" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.a" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.exe" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.so" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.gcno" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.gcda" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*.gcov" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "tmp" $FILE; then echo "Unwanted folder detected: $FILE#L1";rm -rf $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*pain_au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+
+  #     - run: 'for FILE in *; do if grep -q "*pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*pain" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+
+  #     - run: 'for FILE in *; do if grep -q "*au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+
+  #     - run: 'for FILE in *; do if grep -q "*chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "*chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #     - run: 'for FILE in *; do if grep -q "chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";rm -f $FILE;return 1; fi; done;'
+  #       # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
