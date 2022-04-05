@@ -38,6 +38,10 @@ jobs:
             echo "::set-output name=release_name::$RELEASE_NAME"
             echo "::set-output name=current_time::$CURRENT_TIME"
             echo "::set-output name=current_username::$CURRENT_USERNAME"
+            echo "steps.my_env_env.tag_name is '${steps.my_env_env.tag_name}'"
+            echo "steps.my_env_env.release_name is '${steps.my_env_env.release_name}'"
+            echo "steps.my_env_env.current_time is '${steps.my_env_env.current_time}'"
+            echo "steps.my_env_env.current_username is '${steps.my_env_env.current_username}'"
 
         - name: output environement variables v1
           run: |
