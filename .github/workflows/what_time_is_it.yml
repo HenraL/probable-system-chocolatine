@@ -20,17 +20,17 @@ jobs:
           run: echo "::set-output name=mo_time::$(date +'%H-%M-%S-%N')
 
         - name: Test with environment variables
-          run: echo $TAG_NAME - $RELEASE_NAME
+          run: |
+            echo $TAG_NAME - $RELEASE_NAME
+            echo "TAG_NAME is '$TAG_NAME'"
+            echo "RELEASE_NAME is '$RELEASE_NAME'"
+            echo "CURRENT_TIME is '$CURRENT_TIME'"
+            echo "CURRENT_USERNAME is '$CURRENT_USERNAME'"
           env:
             TAG_NAME: "The_date_is: ${{ steps.dote.outputs.date }}"
             RELEASE_NAME: "The_Date_Is: ${{ steps.dote.outputs.date }}"
             CURRENT_TIME: "The_time_is: ${{ steps.me_time.outputs.mo_time }}"
             CURRENT_USERNAME: 'Mona_the_Octocat'
-          run: |
-            echo "TAG_NAME is '$TAG_NAME'"
-            echo "RELEASE_NAME is '$RELEASE_NAME'"
-            echo "CURRENT_TIME is '$CURRENT_TIME'"
-            echo "CURRENT_USERNAME is '$CURRENT_USERNAME'"
 
         - name: output environement variables v1
           run: |
