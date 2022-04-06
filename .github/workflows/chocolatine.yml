@@ -6,29 +6,61 @@ jobs:
     steps:
       - name: cloning directory into the machine
         uses: actions/checkout@v2
-      - name: Checking for forbidden files
-        run: 'for FILE in *; do if grep -q "*~" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*-;" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "#*" $FILE;then  echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done'
-        run: 'for FILE in *; do if grep -q "#*#" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*#" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.o" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.a" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.exe" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.so" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.gcno" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.gcda" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*.gcov" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "tmp" $FILE; then echo "Unwanted folder detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*pain_au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*pain" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "*chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
-        run: 'for FILE in *; do if grep -q "chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+      # - name: setup python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: 3.8 #install the python needed
+      # - name: execute a python script
+      #   run: |
+      #     python list_directory.py
+      - name: Where am i?
+        run: "echo $PWD"
+      - name: Display help.
+        run: "help"
+      - name: What is in my directory?
+        run: ls | cat -e
+      - name: Only run this if file README exists
+        run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
+      - name: Only run this if file containing pain_au_chocolat exists
+        run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
+      - name: Check if \# is in file
+        run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
+      # - name: "Unwanted file detected: Dockerfile~#L1"
+      #   run: "echo 'Dockerfile~';exit 1"
+      - name: "Good files found in folders: .gitignore#L1"
+        run: "echo '.gitignore';exit 0"
+        # run: "if grep -q 'Hack_' $File; then  echo 'found # in filename'; fi"
+# name: chocolatine
+# on: [push, pull_request]
+# jobs:
+#   check-for-unwanted-files:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: cloning directory into the machine
+#         uses: actions/checkout@v2
+#       - name: Checking for forbidden files
+#         run: 'for FILE in *; do if grep -q "*~" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*-;" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "#*" $FILE;then  echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done'
+#         run: 'for FILE in *; do if grep -q "#*#" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*#" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.o" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.a" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.exe" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.so" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.gcno" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.gcda" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*.gcov" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "tmp" $FILE; then echo "Unwanted folder detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*pain_au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*pain" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "pain*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "*chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+#         run: 'for FILE in *; do if grep -q "chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
