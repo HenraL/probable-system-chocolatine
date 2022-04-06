@@ -17,6 +17,7 @@ jobs:
           UNWANTED_FILES=0
           for FILE in *
           do
+            echo "UNWANTED_FILES = $UNWANTED_FILES"
             if grep -q "*~" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
@@ -112,11 +113,12 @@ jobs:
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               UNWANTED_FILES=1
             fi
+            echo "UNWANTED_FILES= $UNWANTED_FILES"
           done
           if [ $UNWANTED_FILES -eq 1 ]
           then
-            echo "::error line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
-            exit 1
+            echo "::error file='', line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
+            # exit 1
           fi
 
 
