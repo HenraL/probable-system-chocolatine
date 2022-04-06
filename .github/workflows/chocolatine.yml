@@ -6,27 +6,27 @@ jobs:
     steps:
       - name: cloning directory into the machine
         uses: actions/checkout@v2
-      - name: Where am i?
-        run: "echo $PWD"
-      - name: Display help.
-        run: "help"
-      - name: What is in my directory?
-        run: ls | cat -e
-      - name: Only run this if file README exists
-        run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
-      - name: Only run this if file containing pain_au_chocolat exists
-        run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
-      - name: Check if \# is in file
-        run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
-      - name: "Good files found in folders: .gitignore#L1"
-        run: "echo '.gitignore';exit 0"
+      # - name: Where am i?
+      #   run: "echo $PWD"
+      # - name: Display help.
+      #   run: "help"
+      # - name: What is in my directory?
+      #   run: ls | cat -e
+      # - name: Only run this if file README exists
+      #   run: "(test -f README && echo README exists) || echo README does not exist, skipping step"
+      # - name: Only run this if file containing pain_au_chocolat exists
+      #   run: "(test -f pain_au_chocolat && echo pain_au_chocolat exists) || echo pain_au_chocolat does not exists"
+      # - name: Check if \# is in file
+      #   run: 'for FILE in *; do if grep -q ''#'' $FILE;then  echo "Unwanted file detected: $FILE#L1"; fi; done'
+      # - name: "Good files found in folders: .gitignore#L1"
+      #   run: "echo '.gitignore';exit 0"
       - name: check_repository_cleanliness
         run: |
           for FILE in *
           do
             if grep -q "*~" $FILE
             then
-              echo "::error file={FUck you},line={1},endLine={0},title={Unwanted file detected:}::{$FILE#L1}"
+              echo "::error file={},line={1},endLine={0},title={Unwanted file detected:}::{$FILE#L1}"
               echo '::set-output name=SELECTED_COLOR::red'
             fi
           done
