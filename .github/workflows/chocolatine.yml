@@ -19,6 +19,7 @@ jobs:
         run: |
           for FILE in *
           do
+            echo "FILE = $FILE"
             if grep -q "*~" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
