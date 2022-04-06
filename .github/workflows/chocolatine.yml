@@ -15,18 +15,8 @@ jobs:
         uses: actions/checkout@v2
       - name: check_repository_cleanliness
         run: |
-          # UNWANTED_FILES=0
-          # FOLE="de"
-          # NB_FILES=0
-          # FILE_INDEX=0
-          # echo "(1) NB_FILES = $NB_FILES"
-          # for FILE in *
-          #   let "NB_FILES = $NB_FILES+1"
-          # echo "(2) NB_FILES = $NB_FILES"
           for FILE in *
           do
-            # let "FILE_INDEX = $FILE_INDEX+1"
-            # echo "UNWANTED_FILES = $UNWANTED_FILES"
             if grep -q "*~" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
@@ -92,26 +82,7 @@ jobs:
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               UNWANTED_FILES=1
             fi
-
-            # if [ $UNWANTED_FILES -eq 1 ] && [ $FILE_INDEX -eq $NB_FILES ]
-            # then
-            #   echo "::sucess file=$FOLE,line=1,endLine=0,title=Unwanted file sjdksdksjdkdetected::$FOLE"
-            #   # echo "::error file=$UNWANTED_FILES, line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
-            #   echo "In UNWANTED_FILES"
-            #   # exit 1
-            # fi
-            # echo "UNWANTED_FILES= $UNWANTED_FILES"
-            # FOLE=$FILE
-            # echo "FOLE = $FOLE"
           done
-          # FILE='Test'
-          # if [ $UNWANTED_FILES -eq 1 ]
-          # then
-          #   echo "::sucess file=$FOLE,line=1,endLine=0,title=Unwanted file sjdksdksjdkdetected::$FOLE"
-          #   # echo "::error file=$UNWANTED_FILES, line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
-          #   echo "In UNWANTED_FILES"
-          #   # exit 1
-          # fi
 
       - name: check_program_compilation
         uses: docker://alpine:3.8
