@@ -15,3 +15,7 @@ do
         echo '::set-output name=SELECTED_COLOR::red'
     fi
 done
+
+['*~', '*-;', '#*', '#*#', '*#', '*.o', '*.a', '*.exe', '*.so', '*.gcno', '*.gcda', '*.gcov', 'tmp', "*pain_au_chocolat*" , "*pain_au_chocolat", "pain_au_chocolat*"]
+
+[ 'grep -q "*~" $FILE', 'grep -q "*-;" $FILE', 'grep -q "#*" $FILE', 'grep -q "#*#" $FILE', 'grep -q "*#" $FILE', 'grep -q "*.o" $FILE', 'grep -q "*.a" $FILE', 'grep -q "*.exe" $FILE', 'grep -q "*.so" $FILE', 'grep -q "*.gcno" $FILE', 'grep -q "*.gcda" $FILE', 'grep -q "*.gcov" $FILE', 'grep -q "tmp" $FILE', 'grep -q "*pain_au_chocolat*" $FILE', 'grep -q "*pain_au_chocolat" $FILE', 'grep -q "pain_au_chocolat*" $FILE']
