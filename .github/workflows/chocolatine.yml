@@ -113,6 +113,11 @@ jobs:
           #   # exit 1
           # fi
 
+      - name: check_program_compilation
+        uses: docker://alpine:3.8
+      - name: run_tests
+        uses: docker://docker.io/epitechcontent/epitest-docker:latest
+
 to_gitlab:
   runs-on: ubuntu-latest
   steps:
