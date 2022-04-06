@@ -8,7 +8,7 @@ on:
     branches-ignore:
       - 'ga-ignore-**'
 jobs:
-  check-for-unwanted-files:
+  check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
       - name: cloning directory into the machine
@@ -117,4 +117,3 @@ jobs:
             git@github.com:HenraL/probable-system-chocolatine.git
           ssh_username:
             ${{ secrets.SECRET_KEY }}
-  
