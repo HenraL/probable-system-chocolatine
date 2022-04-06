@@ -3,10 +3,9 @@ on: [push, pull_request]
 jobs:
   check-for-unwanted-files:
     runs-on: ubuntu-latest
-    # container: epitechcontent/epitest-docker
     steps:
-      - name: cloning directory into the machine
-        uses: actions/checkout@v2
+      # - name: cloning directory into the machine
+        # uses: actions/checkout@v2
       - run: 'for FILE in *; do if grep -q "*~" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "*-;" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "#*" $FILE;then  echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done'
@@ -20,6 +19,7 @@ jobs:
       - run: 'for FILE in *; do if grep -q "*.gcda" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "*.gcov" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "tmp" $FILE; then echo "Unwanted folder detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
+
       - run: 'for FILE in *; do if grep -q "*pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "*pain_au_chocolat" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
       - run: 'for FILE in *; do if grep -q "pain_au_chocolat*" $FILE; then echo "Unwanted file detected: $FILE#L1";echo '::set-output name=SELECTED_COLOR::red'; fi; done;'
