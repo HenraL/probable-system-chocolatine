@@ -31,44 +31,100 @@ jobs:
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".o"* ]]
+            if [[ "$FILE" == *".o" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".a"* ]]
+            if [[ "$FILE" == *".a" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".exe"* ]]
+            if [[ "$FILE" == *".exe" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".so"* ]]
+            if [[ "$FILE" == *".so" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".gcno"* ]]
+            if [[ "$FILE" == *".gcno" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".gcda"* ]]
+            if [[ "$FILE" == *".gcda" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *".gcov"* ]]
+            if [[ "$FILE" == *".gcov" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *"tmp"* ]]
+            if [[ "$FILE" == "tmp" ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if [[ "$FILE" == *"pain_au_chocolat"* ]]
+            if [[ ${"$FILE",,} == *"pain_au_chocolat"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-
+            if [[ "$FILE" == *".sh" ]]
+            then
+              echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+            fi
           done
+
+          # for FILE in *
+          # do
+          #   if [[ "$FILE" == *"~"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *"-;"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *"#"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".o"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".a"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".exe"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".so"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".gcno"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".gcda"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *".gcov"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *"tmp"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+          #   if [[ "$FILE" == *"pain_au_chocolat"* ]] V
+          #   then
+          #     echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+          #   fi
+
+          # done
 
       - name: check_program_compilation
         uses: docker://alpine:3.8
