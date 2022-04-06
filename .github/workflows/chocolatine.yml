@@ -19,71 +19,55 @@ jobs:
         run: |
           for FILE in *
           do
-            echo "FILE = $FILE"
-            if grep -q "*~" $FILE
+            if [[ "$FILE" == *"~"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*-;" $FILE
+            if [[ "$FILE" == *"-;"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "#*" $FILE
+            if [[ "$FILE" == *"#"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "#*#" $FILE
+            if [[ "$FILE" == *".o"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*#" $FILE
+            if [[ "$FILE" == *".a"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.o" $FILE
+            if [[ "$FILE" == *".exe"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.a" $FILE
+            if [[ "$FILE" == *".so"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.exe" $FILE
+            if [[ "$FILE" == *".gcno"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.so" $FILE
+            if [[ "$FILE" == *".gcda"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.gcno" $FILE
+            if [[ "$FILE" == *".gcov"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.gcda" $FILE
+            if [[ "$FILE" == *"tmp"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "*.gcov" $FILE
+            if [[ "$FILE" == *"pain_au_chocolat"* ]]
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
             fi
-            if grep -q "tmp" $FILE
-            then
-              echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
-            fi
-            if grep -q "*pain_au_chocolat*" $FILE
-            then
-              echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
-            fi
-            if grep -q "*pain_au_chocolat" $FILE
-            then
-              echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
-            fi
-            if grep -q "pain_au_chocolat*" $FILE
-            then
-              echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
-            fi
+
           done
 
       - name: check_program_compilation
@@ -119,3 +103,70 @@ jobs:
             git@github.com:HenraL/probable-system-chocolatine.git
           ssh_username:
             ${{ secrets.SECRET_KEY }}
+
+
+# echo "FILE = $FILE"
+#             if grep -q "*~" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*-;" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "#*" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "#*#" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*#" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.o" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.a" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.exe" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.so" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.gcno" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.gcda" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*.gcov" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "tmp" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*pain_au_chocolat*" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "*pain_au_chocolat" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
+#             if grep -q "pain_au_chocolat*" $FILE
+#             then
+#               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+#             fi
