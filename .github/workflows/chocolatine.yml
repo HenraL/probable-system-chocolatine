@@ -19,10 +19,10 @@ jobs:
           FOLE="de"
           NB_FILES=0
           FILE_INDEX=0
-          echo "(1) NB_FILES = $NB_FILES"
-          for FILE in *
-            let "NB_FILES = $NB_FILES+1"
-          echo "(2) NB_FILES = $NB_FILES"
+          # echo "(1) NB_FILES = $NB_FILES"
+          # for FILE in *
+          #   let "NB_FILES = $NB_FILES+1"
+          # echo "(2) NB_FILES = $NB_FILES"
           for FILE in *
           do
             let "FILE_INDEX = $FILE_INDEX+1"
