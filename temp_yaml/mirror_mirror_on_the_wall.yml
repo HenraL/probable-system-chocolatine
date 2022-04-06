@@ -1,0 +1,27 @@
+to_gitlab:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+with:
+fetch-depth: 0
+- uses: pixta-dev/repository-mirroring-action@v1
+with:
+target_repo_url:
+https://github.com/HenraL/probable-system-chocolatine.git
+ssh_private_key:
+git@github.com:HenraL/probable-system-chocolatine.git
+to_codecommit:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+with:
+fetch-depth: 0
+- uses: pixta-dev/repository-mirroring-action@v1
+name: push_to_mirror
+with:
+target_repo_url:
+https://github.com/HenraL/probable-system-chocolatine.git
+ssh_private_key:
+git@github.com:HenraL/probable-system-chocolatine.git
+ssh_username:
+${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
