@@ -22,17 +22,6 @@ jobs:
 
         - name: Setting environement variables
           id: my_env_env
-          # run: |
-          #   echo $TAG_NAME - $RELEASE_NAME
-          #   echo "TAG_NAME is '$TAG_NAME'"
-          #   echo "RELEASE_NAME is '$RELEASE_NAME'"
-          #   echo "CURRENT_TIME is '$CURRENT_TIME'"
-          #   echo "CURRENT_USERNAME is '$CURRENT_USERNAME'"
-          # env:
-          #   TAG_NAME: "The_date_is: ${{ steps.dote.outputs.date }}"
-          #   RELEASE_NAME: "The_Date_Is: ${{ steps.dote.outputs.date }}"
-          #   CURRENT_TIME: "The_time_is: ${{ steps.me_time.outputs.moo_time }}"
-          #   CURRENT_USERNAME: 'Mona_the_Octocat'
           run: |
             echo "::set-output name=tag_name::'The_date_is: $(steps.dote.outputs.date)'"
             echo "::set-output name=release_name::'The_Date_Is: $(steps.dote.outputs.date)'"
@@ -43,37 +32,14 @@ jobs:
             echo "steps.my_env_env.current_time is '${{ steps.my_env_env.current_time }}'"
             echo "steps.my_env_env.current_username is '${{ steps.my_env_env.current_username }}'"
 
-        # - name: output environement variables v1
-        #   run: |
-        #     echo "TAG_NAME is '$TAG_NAME'"
-        #     echo "RELEASE_NAME is '$RELEASE_NAME'"
-        #     echo "CURRENT_TIME is '$CURRENT_TIME'"
-        #     echo "CURRENT_USERNAME is '$CURRENT_USERNAME'"
         - name: Output structure my_env_env content
           run: |
             echo "steps.my_env_env.tag_name is '${steps.my_env_env.tag_name}'"
             echo "steps.my_env_env.release_name is '${steps.my_env_env.release_name}'"
             echo "steps.my_env_env.current_time is '${steps.my_env_env.current_time}'"
             echo "steps.my_env_env.current_username is '${steps.my_env_env.current_username}'"
-        # - name: Put the vars in structure my_env
-        #   id: my_env
-        #   run: |
-        #     echo "::set-output name=tag_name::$TAG_NAME"
-        #     echo "::set-output name=release_name::$RELEASE_NAME"
-        #     echo "::set-output name=current_time::$CURRENT_TIME"
-        #     echo "::set-output name=current_username::$CURRENT_USERNAME"
-        # - name: Output structure my_env content
-        #   run: |
-        #     echo "steps.my_env.tag_name is '${steps.my_env.tag_name}'"
-        #     echo "steps.my_env.release_name is '${steps.my_env.release_name}'"
-        #     echo "steps.my_env.current_time is '${steps.my_env.current_time}'"
-        #     echo "steps.my_env.current_username is '${steps.my_env.current_username}'"
 
         - name: Test with input
           uses: actions/hello-world-docker-action@master
           with:
             who-to-greet: "${{ steps.my_env_env.current_username }}-${{ steps.dote.outputs.date }}"
-        # - name: Test time output
-        #   uses: actions/hello-world-docker-action@master
-        #   with:
-        #     who-to-greet: $CURRENT_USERNAME-${{ steps.date.outputs.my_time }}
