@@ -23,7 +23,7 @@ jobs:
               then
                 echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               fi
-              if [[ ${"$FILE",,} == *"pain_au_chocolat"* ]]
+              if [[ "${FILE,,}" == *"pain_au_chocolat"* ]]
               then
                 echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               fi
