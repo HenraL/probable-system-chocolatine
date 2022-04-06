@@ -12,7 +12,7 @@ jobs:
           do
             if grep -q "*~" $FILE
             then
-              echo "::error file=$FILE,line={1},endLine={0},title=Unwanted file detected:::$FILE#L1"
+              echo "::error file=$FILE,line={1},endLine={0},title=Unwanted file detected::$FILE#L1"
               echo '::set-output name=SELECTED_COLOR::red'
             fi
           done
