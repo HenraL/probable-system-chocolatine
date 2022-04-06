@@ -10,10 +10,9 @@ jobs:
         run: |
           for FILE in *
           do
-            if grep -q "*~" $FILE
+            if [ grep -q "*~" $FILE ] || [ grep -q "*~" $FILE ] || [ grep -q "*-;" $FILE ] || [ grep -q "#*" $FILE ] || [ grep -q "#*#" $FILE ] || [ grep -q "*#" $FILE ] || [ grep -q "*.o" $FILE ] || [ grep -q "*.a" $FILE ] || [ grep -q "*.exe" $FILE ] || [ grep -q "*.so" $FILE ] || [ grep -q "*.gcno" $FILE ] || [ grep -q "*.gcda" $FILE ] || [ grep -q "*.gcov" $FILE ] || [ grep -q "tmp" $FILE ] || [ grep -q "*pain_au_chocolat*" $FILE ] || [ grep -q "*pain_au_chocolat" $FILE ] || [ grep -q "pain_au_chocolat*" $FILE ]
             then
               echo "::error file=$FILE,line={1},endLine={0},title=Unwanted file detected::$FILE#L1"
-              echo '::set-output name=SELECTED_COLOR::red'
             fi
           done
 
