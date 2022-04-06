@@ -59,6 +59,22 @@ jobs:
               then
                 echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               fi
+              if [[ "$FILE" == *".a" ]]
+              then
+                echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              fi
+              if [[ "$FILE" == *"-;"* ]]
+              then
+                echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              fi
+              if [[ "$FILE" == *".gcno" ]]
+              then
+                echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              fi
+              if [[ "$FILE" == *".sh" ]]
+              then
+                echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              fi
             done
 
       - name: check_program_compilation
