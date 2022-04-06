@@ -14,88 +14,111 @@ jobs:
         uses: actions/checkout@v2
       - name: check_repository_cleanliness
         run: |
+          UNWANTED_FILES=0
           for FILE in *
           do
             if grep -q "*~" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*-;" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "#*" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "#*#" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*#" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.o" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.a" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.exe" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.so" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.gcno" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.gcda" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*.gcov" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "tmp" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*pain_au_chocolat*" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "*pain_au_chocolat" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
 
             if grep -q "pain_au_chocolat*" $FILE
             then
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
+              UNWANTED_FILES=1
             fi
           done
+          if [ $UNWANTED_FILES -eq 1 ]
+          then
+            echo "::error line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
+            exit 1
+          fi
+
 
 # name: chocolatine
 # on: [push, pull_request]
