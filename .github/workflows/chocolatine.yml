@@ -73,7 +73,41 @@ jobs:
             fi
           done
 
-          # for FILE in *
+      - name: check_program_compilation
+        uses: docker://alpine:3.8
+      - name: run_tests
+        uses: docker://docker.io/epitechcontent/epitest-docker:latest
+
+  to_gitlab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            https://github.com/HenraL/probable-system-chocolatine.git
+          ssh_private_key:
+            git@github.com:HenraL/probable-system-chocolatine.git
+
+  to_codecommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        name: push_to_mirror
+        with:
+          target_repo_url:
+            https://github.com/HenraL/probable-system-chocolatine.git
+          ssh_private_key:
+            git@github.com:HenraL/probable-system-chocolatine.git
+          ssh_username:
+            ${{ secrets.SECRET_KEY }}
+
+# for FILE in *
           # do
           #   if [[ "$FILE" == *"~"* ]] V
           #   then
@@ -125,42 +159,6 @@ jobs:
           #   fi
 
           # done
-
-      - name: check_program_compilation
-        uses: docker://alpine:3.8
-      - name: run_tests
-        uses: docker://docker.io/epitechcontent/epitest-docker:latest
-
-  to_gitlab:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url:
-            https://github.com/HenraL/probable-system-chocolatine.git
-          ssh_private_key:
-            git@github.com:HenraL/probable-system-chocolatine.git
-
-  to_codecommit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
-        name: push_to_mirror
-        with:
-          target_repo_url:
-            https://github.com/HenraL/probable-system-chocolatine.git
-          ssh_private_key:
-            git@github.com:HenraL/probable-system-chocolatine.git
-          ssh_username:
-            ${{ secrets.SECRET_KEY }}
-
-
 # echo "FILE = $FILE"
 #             if grep -q "*~" $FILE
 #             then
