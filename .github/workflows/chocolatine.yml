@@ -1,5 +1,11 @@
 name: chocolatine
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - 'ga-ignore-**'
+  pull-request:
+    branches-ignore:
+      - 'ga-ignore-**'
 jobs:
   check-for-unwanted-files:
     runs-on: ubuntu-latest
