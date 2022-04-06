@@ -115,10 +115,10 @@ jobs:
             fi
             echo "UNWANTED_FILES= $UNWANTED_FILES"
           done
-          if [ $UNWANTED_FILES -eq 1 ] || [ $UNWANTED_FILES == 1 ]
+          if [ $UNWANTED_FILES -eq 1 ]
           then
             echo "In UNWANTED_FILES"
-            echo "::error file='', line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
+            echo "::error file=" ", line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
             # exit 1
           fi
 
