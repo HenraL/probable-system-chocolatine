@@ -121,7 +121,7 @@ jobs:
           FILE='Test'
           if [ $UNWANTED_FILES -eq 1 ]
           then
-            echo "::error file=$FOLE,line=1,endLine=0,title=Unwanted file sjdksdksjdkdetected::$FOLE"
+            echo "::sucess file=$FOLE,line=1,endLine=0,title=Unwanted file sjdksdksjdkdetected::$FOLE"
             # echo "::error file=$UNWANTED_FILES, line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
             echo "In UNWANTED_FILES"
             # exit 1
