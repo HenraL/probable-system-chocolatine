@@ -7,18 +7,14 @@ on:
   pull_request:
     branches-ignore:
       - 'ga-ignore-**'
-
-env:
-  MIRROR_URL: https://github.com/EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
-
 jobs:
   check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
       - name: cloning directory into the machine
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       - name: error_output
-        run: echo "::error file=,line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Process completed with exit code 1"
+        run: echo "::error file=,line=1,endLine=0,title=Check if the repository is clean and void of any unwanted files (temp\nfiles, binary files, etc.)::Process completed with exit code 1"
       - name: check_repository_cleanliness
         run: |
             ILLEGAL_FILES_FOUND=0
@@ -37,28 +33,28 @@ jobs:
   to_gitlab:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            ${{ env.MIRROR_URL}}
+            https://github.com/HenraL/probable-system-chocolatine.git
           ssh_private_key:
-            git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
+            git@github.com:HenraL/probable-system-chocolatine.git
 
   to_codecommit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         name: push_to_mirror
         with:
           target_repo_url:
-            ${{ env.MIRROR_URL}}
+            https://github.com/HenraL/probable-system-chocolatine.git
           ssh_private_key:
-            git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
+            git@github.com:HenraL/probable-system-chocolatine.git
           ssh_username:
             ${{ secrets.GIT_SSH_PRIVATE_KEY }}
