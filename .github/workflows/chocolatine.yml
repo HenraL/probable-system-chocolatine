@@ -22,7 +22,7 @@ jobs:
       - name: check_repository_cleanliness
         run: |
             ILLEGAL_FILES_FOUND=0
-            ILLEGAL_FILES="$(find -iname "*~" -o -iname "*pain_au_chocolat*" -o -iname "*#*" -o -iname "*.exe" -o -iname "*.sh" -o -iname "*.so" -o -iname "*.o" -o -iname "*.gcda" -o -iname "*.gcov" -o -iname "tmp" -o -iname "*.a" -o -iname "*-;" -o -iname "*.gcno" -type f,d)"
+            ILLEGAL_FILES="$(find -iname "*~" -o -iname "*pain_au_chocolat*" -o -iname "*#*" -o -iname "*.exe" -o -iname "*.so" -o -iname "*.o" -o -iname "*.gcda" -o -iname "*.gcov" -o -iname "tmp" -o -iname "*.a" -o -iname "*-;" -o -iname "*.gcno" -type f,d)"
             for FILE in $ILLEGAL_FILES
             do
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
