@@ -9,7 +9,7 @@ on:
       - 'ga-ignore-**'
 
 env:
-  MIRROR_URL: https://github.com/HenraL/probable-system-chocolatine.git
+  MIRROR_URL: https://github.com/EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
 
 jobs:
   check_repository_cleanliness:
@@ -45,7 +45,7 @@ jobs:
           target_repo_url:
             ${{ env.MIRROR_URL}}
           ssh_private_key:
-            git@github.com:HenraL/probable-system-chocolatine.git
+            git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
 
   to_codecommit:
     runs-on: ubuntu-latest
@@ -59,6 +59,6 @@ jobs:
           target_repo_url:
             ${{ env.MIRROR_URL}}
           ssh_private_key:
-            git@github.com:HenraL/probable-system-chocolatine.git
+            git@github.com:EpitechPromo2026/B-DOP-200-PAR-2-1-chocolatine-henry.letellier.git
           ssh_username:
             ${{ secrets.GIT_SSH_PRIVATE_KEY }}
