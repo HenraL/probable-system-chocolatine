@@ -28,6 +28,10 @@ jobs:
               echo "::error file=$FILE,line=1,endLine=0,title=Unwanted file detected::$FILE"
               ILLEGAL_FILES_FOUND=1
             done
+            if [ $ILLEGAL_FILES_FOUND -eq 1 ]
+            then
+              exit 1
+            fi
 
       - name: check_program_compilation
         uses: docker://alpine:3.8
