@@ -34,7 +34,7 @@ jobs:
             fi
 
       - name: check_program_compilation
-        uses: docker://alpine:3.8
+        uses: docker://alpine:3.16
       - name: run_tests
         uses: docker://docker.io/epitechcontent/epitest-docker:latest
 
